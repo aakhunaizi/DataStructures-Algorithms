@@ -73,21 +73,25 @@ let deck = new Stack();
 //Filling deck with 20 random cards
 deck.createDeck();
 //Printing deck
-console.log(deck);
+// console.log(deck);
 
 //Assigning 5 cards to player1
 
 let playerOne = new Stack(5);
 let counterOne = 0;
 if (playerOne.isEmpty() && !playerOne.isFull()) {
-  console.log("Player 1:");
+  console.log(` -------------------------
+  Player 1: \n -------------------------
+  `);
   while (counterOne < playerOne.limit) {
     let card = deck.pop();
     playerOne.push(card);
     console.log(`${counterOne + 1}- ${card}`);
     counterOne++;
   }
-  console.log(`There are ${deck.length} cards remaining in the deck`);
+  console.log(
+    `\n ---------------------------------------- \n There are ${deck.length} cards remaining in the deck \n ---------------------------------------- \n`
+  );
 }
 
 //Assigning 5 cards to player2
@@ -95,14 +99,20 @@ if (playerOne.isEmpty() && !playerOne.isFull()) {
 let playerTwo = new Stack(5);
 let playerTwoCounter = 0;
 if (playerTwo.isEmpty() && !playerTwo.isFull()) {
-  console.log("Player 2:");
+  console.log(` -------------------------
+  Player 2: \n -------------------------
+  `);
   while (playerTwoCounter < playerTwo.limit) {
     let card2 = deck.pop();
     console.log(`${playerTwoCounter + 1}- ${card2}`);
     playerTwoCounter++;
   }
-  console.log(`There are ${deck.length} cards remaining in the deck`);
+  console.log(
+    `\n ---------------------------------------- \n There are ${deck.length} cards remaining in the deck \n ---------------------------------------- \n`
+  );
 }
 
 //Printing out first card in deck
-console.log(deck.peek());
+console.log(`----------------------------------------
+The first card in the deck is ${deck.peek()} \n----------------------------------------
+`);
