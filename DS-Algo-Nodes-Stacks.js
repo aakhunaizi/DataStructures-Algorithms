@@ -29,7 +29,7 @@ class Stack {
       return this.top.firstCard();
     }
   };
-
+  //Pushing a card to the stack
   push = (color, number) => {
     if (this.isFull()) {
       console.log("Oops! The deck is full.");
@@ -39,7 +39,7 @@ class Stack {
       this.length++;
     }
   };
-
+  //Delecting a card from the stack
   pop = () => {
     if (this.isEmpty()) {
       console.log("Oh no! The deck is empty.");
@@ -50,7 +50,7 @@ class Stack {
       return popped.firstCard();
     }
   };
-
+  //Creating a deck
   createDeck = () => {
     let deckCounter = 0;
     while (deckCounter < this.limit) {
@@ -59,7 +59,7 @@ class Stack {
     }
   };
 }
-
+//Randomizing the colors and numbers
 const colors = ["red", "blue", "green", "yellow"];
 const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
