@@ -104,6 +104,7 @@ if (playerTwo.isEmpty() && !playerTwo.isFull()) {
   `);
   while (playerTwoCounter < playerTwo.limit) {
     let card2 = deck.pop();
+    playerTwo.push(card2);
     console.log(`${playerTwoCounter + 1}- ${card2}`);
     playerTwoCounter++;
   }
