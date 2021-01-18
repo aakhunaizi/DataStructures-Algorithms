@@ -34,7 +34,7 @@ class HashTable {
     this.classes = { A: [], B: [], C: [], D: [], Other: [] };
   }
 
-  score = (score) => {
+  hash = (score) => {
     if (score >= 90) {
       return "A";
     } else if (score >= 80 && score < 90) {
