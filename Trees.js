@@ -59,11 +59,11 @@ while (fullName !== "done") {
       }
     }
     //Add the child to the family
-    const newNode = new Node(firstName);
+    const newNode = new TreeNode(firstName);
     current.addChild(newNode);
   }
   console.log("--------------------------------------------------");
-  let fullName = prompt(`Enter the child's full name (type 'done' to exit): `);
+  fullName = prompt(`Enter the child's full name (type 'done' to exit): `);
 }
 
 root.traverse();
