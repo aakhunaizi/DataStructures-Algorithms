@@ -1,36 +1,69 @@
+//Prompt-sync
+const prompt = require("prompt-sync")();
+
+//Tree
 class TreeNode {
   constructor(name) {
     this.name = name;
     this.children = [];
   }
-
+  //Adding a child to the tree
   addChild = (node) => {
-    this.children.push(node);
+    if (this.children.length < 2) {
+      this.children.push(node);
+      console.log(`Added ${node.name} as a child of ${this.name}`);
+    } else console.log("Child is an orphan.");
   };
 
+  //Checking children
+
+  getChildWithName = (name) => {
+    return this.children.find((child) => child.name === name);
+  };
+
+  //Traversing through the tree
   traverse = () => {
     let nodes = [this];
     while (nodes.length > 0) {
       let current = nodes.pop();
       console.log(current.name);
-      let currentFullName = current.name.split(" ");
-      let currentLastName = currentFullName[currentFullName.length - 1];
-      console.log(currentLastName);
-      console.log(this.children);
-      // if (this.children.includes(currentLastName) && this.children.length < 3) {
-      //   nodes = [...nodes, ...current.children];
-      // }
+      nodes = [...nodes, ...current.children];
     }
   };
 }
 
-const root = new TreeNode("Ned Stark");
-const child1 = new TreeNode("Robb Stark");
-const child2 = new TreeNode("Sansa Stark");
-const child3 = new TreeNode("Arya Stark");
+//Setting the root of the tree as the family name
+const root = new TreeNode("Stark");
 
-root.addChild(child1);
-root.addChild(child2);
-root.addChild(child3);
+//Prompting the user to enter a child's full name
+let fullName = prompt(`Enter the child's full name (type 'done' to exit): `);
+
+while (fullName !== "done") {
+  let current = root;
+
+  let names = fullName.split(" ").reverse();
+  let firstName = names.pop();
+  let lastName = names.shift();
+
+  //To check if the child is a part of the family
+  if (lastName === current.name) {
+    //Checking if there are names in the middle
+    if (names) {
+      for (let name of names) {
+        let child = current.getChildWithName(name);
+        if (child) {
+          current = child;
+        } else {
+          console.log("Person does not exist");
+        }
+      }
+    }
+    //Add the child to the family
+    const newNode = new Node(firstName);
+    current.addChild(newNode);
+  }
+  console.log("--------------------------------------------------");
+  let fullName = prompt(`Enter the child's full name (type 'done' to exit): `);
+}
 
 root.traverse();
