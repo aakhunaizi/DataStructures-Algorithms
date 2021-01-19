@@ -1,3 +1,7 @@
+//Prompt-sync
+const prompt = require("prompt-sync")();
+
+//Students array
 const students = [
   { name: "Jean-Luc Garza", score: 24 },
   { name: "Teddy Munoz", score: 79 },
@@ -28,21 +32,53 @@ const students = [
   { name: "Diego Mayer", score: 100 },
 ];
 
+//Hash Table
+
 class HashTable {
   constructor(classSize) {
     this.classSize = classSize;
     this.classes = { A: [], B: [], C: [], D: [], Other: [] };
   }
+  //Hashing Function takes in scores
 
   hash = (score) => {
     if (score >= 90) {
       return "A";
-    } else if (score >= 80 && score < 90) {
+    } else if (score >= 80) {
       return "B";
-    } else if (score >= 70 && score < 80) {
+    } else if (score >= 70) {
       return "C";
-    } else if (score >= 60 && score < 70) {
+    } else if (score >= 60) {
       return "D";
     } else return "Other";
   };
+
+  //Insert Method takes in the names and scores of students
+
+  insert = (name, score) => {
+    //Determining which classroom the student has to be assigned to
+    const classroom = this.hash(score);
+    //Pushing the student to the correct classroom if it isn't full
+    if (this.classes[classroom].length < this.classSize) {
+      this.classes[classroom].push({ name, score });
+    }
+  };
+}
+//Prompting the user to enter a class size
+const size = prompt("Enter a limit for the number of students in each class: ");
+
+// Defining Hash Table
+
+const table = new HashTable(size);
+
+//Inserting students into the table
+students.forEach((student) => {
+  table.insert(student.name, student.score);
+});
+
+//Displaying the classrooms
+
+for (let entry of Object.entries(table.classes)) {
+  console.log(`Classroom ${entry[0]}`);
+  console.table(entry[1]);
 }
